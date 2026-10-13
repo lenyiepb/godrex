@@ -1,0 +1,279 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS Custom Properties ─────────────────────────────────────────────── */
+:root {
+  --navy:        #0A1628;
+  --navy-mid:    #112040;
+  --gold:        #C9A84C;
+  --gold-light:  #E8C97A;
+  --cream:       #F8FAFF;
+  --text:        #0A1628;
+  --text-muted:  #4A5568;
+  --border:      #E2E8F0;
+  --surface:     #FFFFFF;
+  --surface-alt: #F1F5F9;
+}
+
+.dark {
+  --text:        #F8FAFF;
+  --text-muted:  #94A3B8;
+  --border:      rgba(255,255,255,0.08);
+  --surface:     #112040;
+  --surface-alt: #0A1628;
+}
+
+/* ─── Base Styles ────────────────────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-cream text-navy dark:bg-navy dark:text-cream transition-colors duration-300;
+    font-family: var(--font-inter, 'Inter', system-ui, sans-serif);
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-playfair, 'Playfair Display', Georgia, serif);
+    @apply font-semibold tracking-tight;
+  }
+
+  h4, h5, h6, button, input, select, textarea {
+    font-family: var(--font-inter, 'Inter', system-ui, sans-serif);
+  }
+
+  ::selection {
+    @apply bg-gold/30 text-navy dark:text-cream;
+  }
+
+  /* Focus rings */
+  :focus-visible {
+    outline: 2px solid theme('colors.gold.DEFAULT');
+    outline-offset: 2px;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { @apply bg-navy-100 dark:bg-navy-900; }
+  ::-webkit-scrollbar-thumb { @apply bg-gold/50 rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-gold; }
+}
+
+/* ─── Utility Layer ─────────────────────────────────────────────────────── */
+@layer utilities {
+  /* Glassmorphism */
+  .glass {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-light {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+  }
+
+  /* Gold gradient text */
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #C9A84C 0%, #E8C97A 50%, #C9A84C 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Section container */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Card */
+  .card {
+    @apply bg-white dark:bg-navy-700 rounded-2xl border border-border shadow-card dark:shadow-card-dark;
+  }
+
+  /* Gold border left accent */
+  .border-l-gold {
+    border-left: 3px solid theme('colors.gold.DEFAULT');
+  }
+
+  /* Ticker pause on hover */
+  .ticker-wrapper:hover .ticker-inner {
+    animation-play-state: paused;
+  }
+
+  /* Price colors */
+  .price-up   { @apply text-emerald-400; }
+  .price-down { @apply text-red-400; }
+
+  /* Table styles */
+  .data-table th {
+    @apply text-xs font-semibold text-navy-400 dark:text-navy-200 uppercase tracking-wider py-3 px-4 text-left;
+  }
+  .data-table td {
+    @apply py-3 px-4 text-sm border-b border-border dark:border-navy-600;
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:hover td {
+    @apply bg-navy-50 dark:bg-navy-800/50;
+  }
+}
+
+/* ─── Component Layer ──────────────────────────────────────────────────── */
+@layer components {
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 font-semibold rounded-xl transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold select-none;
+  }
+
+  .btn-gold {
+    @apply btn bg-gold text-navy-900 hover:bg-gold-300 active:scale-95 shadow-glow-sm hover:shadow-glow;
+  }
+
+  .btn-outline {
+    @apply btn border-2 border-gold/60 text-gold hover:bg-gold hover:text-navy-900 active:scale-95;
+  }
+
+  .btn-ghost {
+    @apply btn text-navy dark:text-cream hover:bg-navy-100 dark:hover:bg-navy-700 active:scale-95;
+  }
+
+  .btn-sm  { @apply px-4 py-2 text-sm; }
+  .btn-md  { @apply px-6 py-3 text-sm; }
+  .btn-lg  { @apply px-8 py-4 text-base; }
+  .btn-xl  { @apply px-10 py-5 text-lg; }
+
+  /* Input fields */
+  .input {
+    @apply w-full rounded-xl border border-border bg-white dark:bg-navy-700 px-4 py-3
+           text-sm text-navy dark:text-cream placeholder-navy-300 dark:placeholder-navy-400
+           focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold
+           transition-all duration-200;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-0.5 rounded-full;
+  }
+  .badge-gold  { @apply badge bg-gold/15 text-gold-600 dark:text-gold-300; }
+  .badge-green { @apply badge bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400; }
+  .badge-red   { @apply badge bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400; }
+
+  /* Section heading */
+  .section-heading {
+    @apply text-3xl md:text-4xl lg:text-5xl font-display font-semibold;
+  }
+  .section-sub {
+    @apply text-lg text-navy-400 dark:text-navy-200 max-w-2xl;
+  }
+
+  /* Navbar link */
+  .nav-link {
+    @apply text-sm font-medium text-navy-600 dark:text-navy-200 hover:text-gold dark:hover:text-gold
+           transition-colors duration-150 relative;
+  }
+  .nav-link::after {
+    content: '';
+    @apply absolute -bottom-0.5 left-0 h-px w-0 bg-gold transition-all duration-200;
+  }
+  .nav-link:hover::after { @apply w-full; }
+
+  /* Risk warning banner */
+  .risk-banner {
+    @apply bg-amber-950/80 dark:bg-amber-950 border-t border-amber-800/50 text-amber-200 text-xs py-3 px-4 text-center;
+  }
+
+  /* Cookie consent */
+  .cookie-bar {
+    @apply fixed bottom-0 left-0 right-0 z-50 glass-light dark:glass px-6 py-5
+           flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4
+           border-t border-border shadow-lg;
+  }
+
+  /* Ticker */
+  .ticker-track {
+    @apply flex gap-8 animate-ticker whitespace-nowrap;
+  }
+  .ticker-track-slow {
+    @apply flex gap-8 animate-ticker-slow whitespace-nowrap;
+  }
+
+  /* Tooltip */
+  .tooltip {
+    @apply relative;
+  }
+  .tooltip::after {
+    content: attr(data-tip);
+    @apply absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs
+           bg-navy-900 text-white rounded-lg whitespace-nowrap opacity-0 pointer-events-none
+           transition-opacity duration-150 z-50;
+  }
+  .tooltip:hover::after { @apply opacity-100; }
+}
+
+/* ─── Ticker pause ───────────────────────────────────────────────────────── */
+.ticker-wrapper:hover .ticker-track,
+.ticker-wrapper:hover .ticker-track-slow {
+  animation-play-state: paused;
+}
+
+/* ─── Hero gradient overlay ─────────────────────────────────────────────── */
+.hero-bg {
+  background: linear-gradient(135deg, #060D19 0%, #0A1628 60%, #0F2450 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(201,168,76,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 20% 80%, rgba(30,64,128,0.3) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* ─── Animated grid pattern ─────────────────────────────────────────────── */
+.grid-pattern {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ─── Comparison table ───────────────────────────────────────────────────── */
+.compare-table {
+  @apply w-full border-collapse;
+}
+.compare-table th {
+  @apply py-4 px-6 text-center font-semibold;
+}
+.compare-table td {
+  @apply py-4 px-6 text-center text-sm border-t border-border dark:border-navy-700;
+}
+.compare-table .feature-col {
+  @apply text-left font-medium text-navy-600 dark:text-navy-300;
+}
+
+/* ─── FAQ accordion ─────────────────────────────────────────────────────── */
+details.faq-item > summary {
+  list-style: none;
+  cursor: pointer;
+}
+details.faq-item > summary::-webkit-details-marker { display: none; }
+
+/* ─── Print ──────────────────────────────────────────────────────────────── */
+@media print {
+  .no-print { display: none !important; }
+}
