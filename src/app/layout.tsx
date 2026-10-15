@@ -21,6 +21,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://godrexcapital.com"),
   title: {
     default: "Godrex Capital — Trade with Confidence",
     template: "%s | Godrex Capital",

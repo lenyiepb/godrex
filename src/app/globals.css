@@ -1,8 +1,66 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-navy: #0A1628;
+  --color-navy-50: #E8EDF5;
+  --color-navy-100: #C5D0E3;
+  --color-navy-200: #97AACC;
+  --color-navy-300: #6884B5;
+  --color-navy-400: #3D619E;
+  --color-navy-500: #1E4080;
+  --color-navy-600: #163166;
+  --color-navy-700: #0F2450;
+  --color-navy-800: #0A1628;
+  --color-navy-900: #060D19;
+
+  --color-gold: #C9A84C;
+  --color-gold-50: #FDF8EC;
+  --color-gold-100: #F9EDCC;
+  --color-gold-200: #F0D896;
+  --color-gold-300: #E8C97A;
+  --color-gold-400: #DDBB5C;
+  --color-gold-500: #C9A84C;
+  --color-gold-600: #A8893C;
+  --color-gold-700: #876B2D;
+  --color-gold-800: #654F1F;
+  --color-gold-900: #433412;
+
+  --color-cream: #F8FAFF;
+  --color-border: #E2E8F0;
+
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-playfair), Georgia, serif;
+
+  --shadow-glow: 0 0 30px rgba(201, 168, 76, 0.25);
+  --shadow-glow-sm: 0 0 15px rgba(201, 168, 76, 0.15);
+  --shadow-card: 0 4px 24px rgba(10, 22, 40, 0.12);
+  --shadow-card-dark: 0 4px 24px rgba(0, 0, 0, 0.4);
+
+  --animate-ticker: ticker 40s linear infinite;
+  --animate-ticker-slow: ticker 60s linear infinite;
+  --animate-fade-up: fadeUp 0.6s ease-out both;
+  --animate-shimmer: shimmer 2s linear infinite;
+  --animate-pulse-slow: pulse_slow 3s ease-in-out infinite;
+
+  @keyframes ticker {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes fadeUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  @keyframes pulse_slow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+}
 
 /* ─── CSS Custom Properties ─────────────────────────────────────────────── */
 :root {
@@ -56,7 +114,7 @@
 
   /* Focus rings */
   :focus-visible {
-    outline: 2px solid theme('colors.gold.DEFAULT');
+    outline: 2px solid var(--gold, #C9A84C);
     outline-offset: 2px;
   }
 
@@ -104,7 +162,7 @@
 
   /* Gold border left accent */
   .border-l-gold {
-    border-left: 3px solid theme('colors.gold.DEFAULT');
+    border-left: 3px solid var(--gold, #C9A84C);
   }
 
   /* Ticker pause on hover */
@@ -132,20 +190,33 @@
 /* ─── Component Layer ──────────────────────────────────────────────────── */
 @layer components {
   /* Buttons */
-  .btn {
-    @apply inline-flex items-center justify-center gap-2 font-semibold rounded-xl transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold select-none;
+  .btn, .btn-gold, .btn-outline, .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    border-radius: 0.75rem;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+    user-select: none;
+  }
+  .btn:focus-visible, .btn-gold:focus-visible, .btn-outline:focus-visible, .btn-ghost:focus-visible {
+    outline: 2px solid var(--gold, #C9A84C);
+    outline-offset: 2px;
   }
 
   .btn-gold {
-    @apply btn bg-gold text-navy-900 hover:bg-gold-300 active:scale-95 shadow-glow-sm hover:shadow-glow;
+    @apply bg-gold text-navy-900 hover:bg-gold-300 active:scale-95 shadow-glow-sm hover:shadow-glow;
   }
 
   .btn-outline {
-    @apply btn border-2 border-gold/60 text-gold hover:bg-gold hover:text-navy-900 active:scale-95;
+    @apply border-2 border-gold/60 text-gold hover:bg-gold hover:text-navy-900 active:scale-95;
   }
 
   .btn-ghost {
-    @apply btn text-navy dark:text-cream hover:bg-navy-100 dark:hover:bg-navy-700 active:scale-95;
+    @apply text-navy dark:text-cream hover:bg-navy-100 dark:hover:bg-navy-700 active:scale-95;
   }
 
   .btn-sm  { @apply px-4 py-2 text-sm; }
@@ -162,12 +233,18 @@
   }
 
   /* Badge */
-  .badge {
-    @apply inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-0.5 rounded-full;
+  .badge, .badge-gold, .badge-green, .badge-red {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.125rem 0.625rem;
+    border-radius: 9999px;
   }
-  .badge-gold  { @apply badge bg-gold/15 text-gold-600 dark:text-gold-300; }
-  .badge-green { @apply badge bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400; }
-  .badge-red   { @apply badge bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400; }
+  .badge-gold  { @apply bg-gold/15 text-gold-600 dark:text-gold-300; }
+  .badge-green { @apply bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400; }
+  .badge-red   { @apply bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400; }
 
   /* Section heading */
   .section-heading {
@@ -195,9 +272,32 @@
 
   /* Cookie consent */
   .cookie-bar {
-    @apply fixed bottom-0 left-0 right-0 z-50 glass-light dark:glass px-6 py-5
-           flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4
-           border-t border-border shadow-lg;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    border-top: 1px solid var(--border);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+  @media (min-width: 640px) {
+    .cookie-bar {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+  .dark .cookie-bar {
+    background: rgba(10, 22, 40, 0.9);
+    border-color: rgba(255, 255, 255, 0.08);
   }
 
   /* Ticker */
