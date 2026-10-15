@@ -5,9 +5,7 @@ import { Mail, Phone, MapPin, MessageCircle, Send, CheckCircle } from "lucide-re
 import type { Metadata } from "next";
 
 const OFFICES = [
-  { city: "London (HQ)", address: "10 Finsbury Square, London, EC2A 1AF, UK", phone: "+44 20 0000 0000", email: "support@godrexcapital.com" },
-  { city: "Limassol",    address: "[PLACEHOLDER — Cyprus office address]",      phone: "+357 00 000 000", email: "cyprus@godrexcapital.com" },
-  { city: "Sydney",      address: "[PLACEHOLDER — Australia office address]",   phone: "+61 2 0000 0000", email: "au@godrexcapital.com" },
+  { city: "Port Harcourt (HQ)", address: "12 Kate House, Alakahia", phone: "+234 810 041 9719", email: "support@godrexcapital.com" },
 ];
 
 export default function ContactPage() {
@@ -150,8 +148,8 @@ export default function ContactPage() {
                 <div className="space-y-2 text-sm">
                   {[
                     ["Monday – Friday", "00:00 – 22:00 GMT"],
-                    ["Saturday",        "08:00 – 17:00 GMT"],
-                    ["Sunday",         "Closed (emergency only)"],
+                    ["Saturday", "08:00 – 17:00 GMT"],
+                    ["Sunday", "Closed (emergency only)"],
                   ].map(([day, hours]) => (
                     <div key={day} className="flex justify-between">
                       <span className="text-navy-400 dark:text-navy-300">{day}</span>

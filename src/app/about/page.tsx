@@ -91,7 +91,7 @@ export default function AboutPage() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { value: "2019", label: "Founded" },
+                { value: "2026", label: "Founded" },
                 { value: "50+", label: "Countries served" },
                 { value: "150k+", label: "Active clients" },
                 { value: "$2.4B+", label: "Daily volume" },
@@ -161,13 +161,13 @@ export default function AboutPage() {
             </div>
             <div className="space-y-4 text-sm text-navy-200">
               {[
-                ["Legal Entity",       "Godrex Capital Ltd"],
-                ["Registration No.",   "[PLACEHOLDER — insert company registration number]"],
-                ["Regulator",         "[PLACEHOLDER — e.g. FCA / CySEC / ASIC / FINRA]"],
-                ["License Number",     "[PLACEHOLDER — insert verified license number]"],
+                ["Legal Entity", "Godrex Capital Ltd"],
+                ["Registration No.", "[PLACEHOLDER — insert company registration number]"],
+                ["Regulator", "[PLACEHOLDER — e.g. FCA / CySEC / ASIC / FINRA]"],
+                ["License Number", "[PLACEHOLDER — insert verified license number]"],
                 ["Registered Address", "10 Finsbury Square, London, EC2A 1AF, United Kingdom"],
-                ["Client Funds",       "Segregated accounts at [PLACEHOLDER — tier-1 bank name]"],
-                ["Compensation Scheme","[PLACEHOLDER — e.g. FSCS up to £85,000]"],
+                ["Client Funds", "Segregated accounts at [PLACEHOLDER — tier-1 bank name]"],
+                ["Compensation Scheme", "[PLACEHOLDER — e.g. FSCS up to £85,000]"],
               ].map(([k, v]) => (
                 <div key={k} className="flex gap-4 border-b border-white/5 pb-3 last:border-0 last:pb-0">
                   <span className="text-navy-400 w-40 flex-shrink-0">{k}</span>
