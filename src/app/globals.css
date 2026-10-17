@@ -120,6 +120,16 @@
   background-color: rgba(201, 168, 76, 0.12);
 }
 
+.site-header-scrolled {
+  background-color: #F8FAFF;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+
+.dark .site-header-scrolled {
+  background-color: #0A1628;
+}
+
 /* ─── Base Styles ────────────────────────────────────────────────────────── */
 @layer base {
   *, *::before, *::after { box-sizing: border-box; }

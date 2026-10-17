@@ -30,7 +30,7 @@ export function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "glass-light dark:glass shadow-card border-b border-border py-2"
+          ? "site-header-scrolled shadow-card border-b border-border py-2"
           : "bg-cream/95 dark:bg-navy/95 backdrop-blur-md shadow-card border-b border-border py-2"
       }`}
     >
