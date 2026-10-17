@@ -6,7 +6,7 @@ export const SITE_NAME = "Godrex Capital";
 export const SITE_TAGLINE = "Trade with Confidence. Grow with Purpose.";
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://godrexcapital.com";
 export const CONTACT_EMAIL = "support@godrexcapital.com";
-export const CONTACT_PHONE = "+44 20 0000 0000";
+export const CONTACT_PHONE = "+234 810 041 9719";
 
 /** ⚠️  Placeholder — replace with verified regulatory details from your attorney */
 export const REGULATORY = {
@@ -14,7 +14,7 @@ export const REGULATORY = {
   registrationNumber: "[PLACEHOLDER — insert company registration number]",
   licenseBody: "[PLACEHOLDER — e.g. FCA / CySEC / ASIC]",
   licenseNumber: "[PLACEHOLDER — insert verified license number]",
-  address: "10 Finsbury Square, London, EC2A 1AF, United Kingdom",
+  address: "12 Kate House, Alakahia, Port Harcourt, Rivers State, Nigeria",
 };
 
 export const RISK_WARNING =
