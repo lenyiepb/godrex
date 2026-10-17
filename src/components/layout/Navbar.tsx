@@ -109,17 +109,19 @@ export function Navbar() {
 
       {/* Mobile menu */}
       {isOpen && (
-        <div className="lg:hidden glass-light dark:glass border-t border-border animate-fade-up">
+        <div className="mobile-menu-panel lg:hidden border-t border-border animate-fade-up">
           <div className="section-container py-4 flex flex-col gap-2">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`py-2.5 px-3 rounded-lg text-sm font-medium transition-colors ${
-                  pathname?.startsWith(link.href)
-                    ? "bg-gold/10 text-gold"
-                    : "text-navy dark:text-cream hover:bg-navy-100 dark:hover:bg-navy-700"
-                }`}
+                aria-current={
+                  pathname === link.href ||
+                  (link.href !== "/" && pathname?.startsWith(`${link.href}/`))
+                    ? "page"
+                    : undefined
+                }
+                className="mobile-menu-link"
               >
                 {link.label}
               </Link>
